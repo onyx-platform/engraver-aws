@@ -1,0 +1,13 @@
+---
+- name: Find all machines in the cluster
+  register: cluster_machines
+  ec2_remote_facts:
+    region: "{{ aws_region }}"
+    filters:
+      instance-state-name: running
+      "tag:ClusterId": "{{ onyx_cluster_id }}"
+
+- name: Cache the cluster information locally
+  run_once: yes
+  delegate_to: localhost
+  shell: "echo {{ cluster_machines.instances | to_json }} > {{ cluster_cache }}"
