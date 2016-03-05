@@ -4,3 +4,6 @@
 
 - include: ec2.yml
   when: not create_vpc
+
+- include: cache.yml
+  when: cache
