@@ -2,6 +2,8 @@
 - name: Find all machines in the cluster
   register: cluster_machines
   ec2_remote_facts:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
     region: "{{ aws_region }}"
     filters:
       instance-state-name: running
