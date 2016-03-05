@@ -10,4 +10,6 @@
 - name: Cache the cluster information locally
   run_once: yes
   delegate_to: localhost
-  shell: "echo {{ cluster_machines.instances | to_json }} > {{ cluster_cache }}"
+  copy:
+    content: "{{ cluster_machines.instances | to_nice_json }}"
+    dest: "{{ cluster_cache }}"
