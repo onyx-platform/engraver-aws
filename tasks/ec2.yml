@@ -14,13 +14,13 @@
     instance_tags:
       Name: "[{{ onyx_cluster_id }}] {{ profile_id }}"
       ClusterId: "{{ onyx_cluster_id }}"
-      Role: "{{ profile_id }}"
+      ProfileId: "{{ profile_id }}"
     vpc_subnet_id: "{{ vpc_subnet_id }}"
     exact_count: "{{ n_machine_instances }}"
     count_tag:
       Name: "[{{ onyx_cluster_id }}] {{ profile_id }}"
       ClusterId: "{{ onyx_cluster_id }}"
-      Role: "{{ profile_id }}"
+      ProfileId: "{{ profile_id }}"
     wait: yes
     wait_timeout: 300
 
@@ -43,7 +43,7 @@
       instance-state-name: running
       "tag:Name": "[{{ onyx_cluster_id }}] {{ profile_id }}"
       "tag:ClusterId": "{{ onyx_cluster_id }}"
-      "tag:Role": "{{ profile_id }}"
+      "tag:ProfileId": "{{ profile_id }}"
 
 - name: Add machines host to inventory
   add_host:
