@@ -7,6 +7,12 @@
       instance-state-name: running
       "tag:ClusterId": "{{ onyx_cluster_id }}"
 
+- name: Ensure Cluster cache directory exists
+  file:
+    path: "{{ cluster_cache | dirname }}"
+    state: directory
+    mode: 0755
+
 - name: Cache the cluster information locally
   run_once: yes
   delegate_to: localhost
