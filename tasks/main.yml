@@ -3,7 +3,7 @@
   when: create_vpc
 
 - include: ec2.yml
-  when: not create_vpc
+  when: create_ec2
 
 - include: cache.yml
   when: cache
