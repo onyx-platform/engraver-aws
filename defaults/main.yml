@@ -1,2 +1,5 @@
 ---
-# defaults file for engraver-aws
+create_vpc: no
+create_ec2: no
+cache: no
+populate_inventory: no
