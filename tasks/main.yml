@@ -7,3 +7,6 @@
 
 - include: cache.yml
   when: cache
+
+- include: populate_inventory.yml
+  when: populate_inventory
