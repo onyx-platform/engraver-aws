@@ -1,0 +1,31 @@
+---
+- name: Remove the public subnet security group
+  ec2_group:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    name: "[{{ onyx_cluster_id }}] Onyx Public Subnet Security Group"
+    description: "Base Security group for Onyx"
+    vpc_id: "{{ vpc.vpc_id }}"
+    region: "{{ aws_region }}"
+    state: absent
+
+- name: Remove subnets and route tables from the VPC
+  local_action:
+    module: ec2_vpc
+    vpc_id: "{{ vpc.vpc_id }}"
+    region: "{{ aws_region }}"
+    state: present
+    resource_tags: "{}"
+    subnets: []
+    internet_gateway: no
+    route_tables: []
+    wait: yes
+
+- name: Delete the VPC
+  local_action:
+    module: ec2_vpc
+    vpc_id: "{{ vpc.vpc_id }}"
+    region: "{{ aws_region }}"
+    state: absent
+    resource_tags: "{}"
+    wait: yes
