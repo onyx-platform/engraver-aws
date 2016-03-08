@@ -1,6 +1,9 @@
 ---
-- include: vpc.yml
+- include: vpc.yml vpc_state=present
   when: create_vpc
+
+- include: vpc.yml vpc_state=absent
+  when: remove_vpc
 
 - include: ec2.yml
   when: create_ec2
