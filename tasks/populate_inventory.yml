@@ -15,5 +15,5 @@
   add_host:
     name: "{{ item.public_dns_name }}"
     private_ip: "{{ item.private_ip_address }}"
-    groups: "{{ (profile_id | list) + machine_services }}"
+    groups: "{{ ([profile_id] + machine_services) | join(', ') }}"
   with_items: discovered_machines.instances
