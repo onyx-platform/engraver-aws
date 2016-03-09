@@ -1,0 +1,9 @@
+---
+- name: "Remove the {{ service }} security group"
+  ec2_group:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    name: "[{{ onyx_cluster_id }}] {{ service }} Security Group"
+    vpc_id: "{{ vpc.vpc_id }}"
+    region: "{{ aws_region }}"
+    state: absent

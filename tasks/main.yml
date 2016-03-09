@@ -8,6 +8,9 @@
 - include: remove_vpc.yml
   when: remove_vpc
 
+- include: remove_sgs.yml
+  when: remove_sgs
+
 - include: ec2.yml
   when: create_ec2
 
