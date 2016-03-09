@@ -6,3 +6,6 @@ cache: no
 populate_inventory: no
 
 remove_vpc: no
+
+cidr_block: 172.0.0.0/16
+onyx_subnet: 172.0.1.0/24

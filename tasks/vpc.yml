@@ -3,16 +3,16 @@
     aws_access_key: "{{ aws_access_key }}"
     aws_secret_key: "{{ aws_secret_key }}"
     state: present
-    cidr_block: 172.0.0.0/16
+    cidr_block: "{{ cidr_block }}"
     resource_tags: { "Name": "[{{ onyx_cluster_id }}] Onyx VPC", "Environment": "Onyx", "ClusterId": "{{ onyx_cluster_id }}"}
     subnets:
-      - cidr: 172.0.1.0/24
+      - cidr: "{{ onyx_subnet }}"
         az: "{{ aws_subnet_az }}"
         resource_tags: { "Name": "[{{ onyx_cluster_id }}] Onyx Subnet", "Environment": "Onyx" }
     internet_gateway: True
     route_tables:
       - subnets:
-          - 172.0.1.0/24
+          - "{{ onyx_subnet }}"
         routes:
           - dest: 0.0.0.0/0
             gw: igw
