@@ -2,6 +2,9 @@
 - include: vpc.yml
   when: create_vpc
 
+- include: sgs.yml
+  when: create_sgs
+
 - include: remove_vpc.yml
   when: remove_vpc
 

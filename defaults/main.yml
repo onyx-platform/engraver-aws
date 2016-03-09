@@ -1,6 +1,8 @@
 ---
 create_vpc: no
 create_ec2: no
-remove_vpc: no
+create_sgs: no
 cache: no
 populate_inventory: no
+
+remove_vpc: no

@@ -25,27 +25,3 @@
 - name: Bind VPC subnet ID
   set_fact:
     vpc_subnet_id: "{{ vpc.subnets[0].id }}"
-
-- name: Create the public subnet security group
-  ec2_group:
-    aws_access_key: "{{ aws_access_key }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    name: "[{{ onyx_cluster_id }}] Onyx Public Subnet Security Group"
-    description: "Base Security group for Onyx"
-    vpc_id: "{{ vpc.vpc_id }}"
-    region: "{{ aws_region }}"
-    purge_rules: yes
-    purge_rules_egress: yes
-    rules:
-      - proto: icmp
-        from_port: -1
-        to_port: -1
-        cidr_ip: "0.0.0.0/0"
-      - proto: tcp
-        from_port: 1
-        to_port: 65535
-        cidr_ip: "0.0.0.0/0"
-      - proto: udp
-        from_port: 1
-        to_port: 65535
-        cidr_ip: "0.0.0.0/0"
