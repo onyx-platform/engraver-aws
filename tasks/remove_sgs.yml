@@ -4,6 +4,7 @@
     aws_access_key: "{{ aws_access_key }}"
     aws_secret_key: "{{ aws_secret_key }}"
     name: "[{{ onyx_cluster_id }}] {{ service }} Security Group"
+    description: ""
     vpc_id: "{{ vpc.vpc_id }}"
     region: "{{ aws_region }}"
     state: absent
