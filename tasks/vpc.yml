@@ -25,3 +25,8 @@
 - name: Bind VPC subnet ID
   set_fact:
     vpc_subnet_id: "{{ vpc.subnets[0].id }}"
+
+- include: sgs.yml
+  vars:
+    service: "SSH"
+    service_security_rules: "{{ ssh_rules }}"
