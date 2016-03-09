@@ -9,3 +9,9 @@ remove_vpc: no
 
 cidr_block: 172.0.0.0/16
 onyx_subnet: 172.0.1.0/24
+
+ssh_rules:
+  - proto: tcp
+    from_port: 22
+    to_port: 22
+    cidr_ip: 0.0.0.0/0

@@ -1,11 +1,22 @@
 ---
+- name: Create the list of security groups
+  set_fact:
+    sg: "[{{ onyx_cluster_id }}] {{ item }} Security Group"
+  register: sgs
+  with_items: "{{ machine_services + ['SSH'] }}"
+
+- name: Set the security group list
+  set_fact:
+    security_groups:
+      "{{ (sgs.results | map(attribute='ansible_facts')) | map(attribute='sg') | list }}"
+
 - name: Launch the EC2 instances
   register: ec2_machines
   ec2:
     aws_access_key: "{{ aws_access_key }}"
     aws_secret_key: "{{ aws_secret_key }}"
     assign_public_ip: yes
-    group: "[{{ onyx_cluster_id }}] Onyx Public Subnet Security Group"
+    group: "{{ security_groups }}"
     zone: "{{ aws_subnet_az }}"
     region: "{{ aws_region }}"
     key_name: "{{ aws_key_name }}"
