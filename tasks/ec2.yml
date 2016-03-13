@@ -10,7 +10,7 @@
     security_groups:
       "{{ (sgs.results | map(attribute='ansible_facts')) | map(attribute='sg') | list }}"
 
-- name: Launch the EC2 instances
+- name: Scale the EC2 instances
   register: ec2_machines
   ec2:
     aws_access_key: "{{ aws_access_key }}"
